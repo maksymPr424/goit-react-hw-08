@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
 import css from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsOps";
+import { addContact } from "../../redux/contacts/operations";
 
 const initValues = {
   name: "",
@@ -13,11 +13,11 @@ const initValues = {
 const FeedbackSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "Too short!")
-    .max(50, "Too long!")
+    .max(25, "Too long!")
     .required("Required"),
   number: Yup.string()
     .min(3, "Too short!")
-    .max(50, "Too long!")
+    .max(20, "Too long!")
     .required("Required"),
 });
 

@@ -1,6 +1,9 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import css from "./LogInForm.module.css";
 import { nanoid } from "nanoid";
+import { useDispatch } from "react-redux";
+import { logIn } from "../../redux/auth/operations";
+import toast, { Toaster } from "react-hot-toast";
 
 const initValues = {
   email: "",
@@ -10,52 +13,72 @@ const initValues = {
 export default function LogInForm() {
   const emailId = nanoid();
   const passwordId = nanoid();
+  const dispatch = useDispatch();
+
+  const notifyError = () =>
+    toast.error("Something went wrong. Please try again.");
+
+  const notifyLoading = () => toast.loading("Loading...");
 
   const registerSubmit = (values, action) => {
-    action.resetForm();
+    const loadingToastId = notifyLoading();
+    dispatch(logIn(values))
+      .unwrap()
+      .then(() => {
+        action.resetForm();
+      })
+      .catch(() => {
+        notifyError();
+      })
+      .finally(() => {
+        toast.dismiss(loadingToastId);
+      });
   };
 
   return (
-    <Formik initialValues={initValues} onSubmit={registerSubmit}>
-      <Form className={css.form}>
-        <div className={css.inputDiv}>
-          <label className={css.label} htmlFor={emailId}>
-            Name
-          </label>
-          <Field
-            id={emailId}
-            placeholder="Enter email"
-            className={css.input}
-            type="email"
-            name="email"
-          ></Field>
-          <ErrorMessage
-            className={css.errorMessage}
-            name="email"
-            component="span"
-          />
-        </div>
-        <div className={css.inputDiv}>
-          <label className={css.label} htmlFor={passwordId}>
-            Name
-          </label>
-          <Field
-            id={passwordId}
-            placeholder="Enter password"
-            className={css.input}
-            type="text"
-            name="password"
-          ></Field>
-          <ErrorMessage
-            className={css.errorMessage}
-            name="password"
-            component="span"
-          />
-        </div>
-        <button className={css.submitBtn} type="submit">
-          Login
-        </button>
-      </Form>
-    </Formik>
+    <>
+      <Formik initialValues={initValues} onSubmit={registerSubmit}>
+        <Form className={css.form}>
+          <div className={css.inputDiv}>
+            <label className={css.label} htmlFor={emailId}>
+              Name
+            </label>
+            <Field
+              id={emailId}
+              placeholder="Enter email"
+              className={css.input}
+              type="email"
+              name="email"
+            ></Field>
+            <ErrorMessage
+              className={css.errorMessage}
+              name="email"
+              component="span"
+            />
+          </div>
+          <div className={css.inputDiv}>
+            <label className={css.label} htmlFor={passwordId}>
+              Name
+            </label>
+            <Field
+              id={passwordId}
+              placeholder="Enter password"
+              className={css.input}
+              type="text"
+              name="password"
+            ></Field>
+            <ErrorMessage
+              className={css.errorMessage}
+              name="password"
+              component="span"
+            />
+          </div>
+          <button className={css.submitBtn} type="submit">
+            Login
+          </button>
+        </Form>
+      </Formik>
+      <Toaster />
+    </>
   );
 }

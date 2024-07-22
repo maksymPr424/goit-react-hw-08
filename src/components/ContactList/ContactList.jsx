@@ -6,16 +6,22 @@ import toast, { Toaster } from "react-hot-toast";
 import { selectFilteredContacts } from "../../redux/filter/selectors";
 import { selectError, selectLoading } from "../../redux/contacts/selectors";
 import { getContacts } from "../../redux/contacts/operations";
+import { selectLoggedIn } from "../../redux/auth/selectors";
+import { Navigate } from "react-router-dom";
 
 export default function ContactList() {
   const dispatch = useDispatch();
   const contacts = useSelector(selectFilteredContacts);
   const isError = useSelector(selectError);
   const isLoading = useSelector(selectLoading);
+  const isLogged = useSelector(selectLoggedIn);
 
   useEffect(() => {
+    if (!isLogged) {
+      return;
+    }
     dispatch(getContacts());
-  }, [dispatch]);
+  }, [dispatch, isLogged]);
 
   useEffect(() => {
     if (isLoading) {
@@ -33,16 +39,22 @@ export default function ContactList() {
 
   return (
     <>
-      <ul className={css.list}>
-        {contacts.map(({ id, name, number }) => {
-          return (
-            <li key={id} className={css.listItem}>
-              <Contact name={name} number={number} id={id} />
-            </li>
-          );
-        })}
-      </ul>
-      <Toaster />
+      {isLogged ? (
+        <>
+          <ul className={css.list}>
+            {contacts.map(({ id, name, number }) => {
+              return (
+                <li key={id} className={css.listItem}>
+                  <Contact name={name} number={number} id={id} />
+                </li>
+              );
+            })}
+          </ul>
+          <Toaster />
+        </>
+      ) : (
+        <Navigate to="/login" replace={true} />
+      )}
     </>
   );
 }

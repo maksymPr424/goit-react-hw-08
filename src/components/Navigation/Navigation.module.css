@@ -2,22 +2,69 @@
   padding: 20px;
   display: flex;
   justify-content: space-between;
+  max-width: 375px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .nav {
+    max-width: 768px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .nav {
+    max-width: 1280px;
+  }
 }
 
 .list {
   display: flex;
   gap: 10px;
+  align-items: center;
+}
+
+.welcomeText {
+  font-size: 14px;
+  text-align: end;
+  max-width: 100px;
+  font-weight: 600;
+}
+
+@media screen and (min-width: 375px) {
+  .welcomeText {
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .welcomeText {
+    font-size: 17px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .welcomeText {
+    font-size: 19px;
+  }
 }
 
 .link {
-  font-size: 16px;
+  font-size: 14px;
   transition: color 0.2s;
   position: relative;
 }
 
-/* .link:hover {
-  color: darkorange;
-} */
+@media screen and (min-width: 768px) {
+  .link {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .link {
+    font-size: 18px;
+  }
+}
 
 .link:hover::after {
   content: "";
@@ -27,4 +74,31 @@
   width: 100%;
   height: 2px;
   background-color: darkorange;
+}
+
+.logOut {
+  font-size: 16px;
+  padding: 4px 6px;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  transition: transform 0.255s;
+}
+
+@media screen and (min-width: 768px) {
+  .logOut {
+    padding: 5px 10px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .logOut {
+    font-size: 18px;
+  }
+}
+
+.logOut:hover,
+.logOut:focus,
+.logOut:active {
+  transform: scale(1.05);
 }

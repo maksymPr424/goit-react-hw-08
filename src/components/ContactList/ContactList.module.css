@@ -18,3 +18,18 @@
 .listItem:not(:last-child) {
   margin-bottom: 15px;
 }
+
+@media screen and (min-width: 765px) {
+  .list {
+    width: 350px;
+    margin: 0;
+    max-height: 500px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .list {
+    width: 400px;
+    max-height: 500px;
+  }
+}
