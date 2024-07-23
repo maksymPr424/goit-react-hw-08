@@ -41,7 +41,7 @@ export default function LogInForm() {
         <Form className={css.form}>
           <div className={css.inputDiv}>
             <label className={css.label} htmlFor={emailId}>
-              Name
+              Email
             </label>
             <Field
               id={emailId}
@@ -58,13 +58,13 @@ export default function LogInForm() {
           </div>
           <div className={css.inputDiv}>
             <label className={css.label} htmlFor={passwordId}>
-              Name
+              Password
             </label>
             <Field
               id={passwordId}
               placeholder="Enter password"
               className={css.input}
-              type="text"
+              type="password"
               name="password"
             ></Field>
             <ErrorMessage

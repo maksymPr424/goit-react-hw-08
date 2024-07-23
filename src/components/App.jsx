@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectLoggedIn, selectRefreshing } from "../redux/auth/selectors";
 import { refreshUser } from "../redux/auth/operations";
 import toast, { Toaster } from "react-hot-toast";
+import PrivateRoute from "./PrivateRoute";
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const RestrictedRoute = lazy(() => import("./RestrictedRoute"));
@@ -57,7 +58,12 @@ function App() {
               />
             }
           />
-          <Route path="/contacts" element={<ContactsPage />} />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute component={<ContactsPage />} redirectTo="/login" />
+            }
+          />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>

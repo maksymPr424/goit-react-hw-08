@@ -5,6 +5,7 @@ import {
   addContact,
   editContact,
 } from "./operations";
+import { logOut } from "../auth/operations";
 
 const handlePending = (state) => {
   state.loading = true;
@@ -15,13 +16,15 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
+const initValues = {
+  items: [],
+  loading: false,
+  error: null,
+};
+
 const contactsSlice = createSlice({
   name: "contacts",
-  initialState: {
-    items: [],
-    loading: false,
-    error: null,
-  },
+  initialState: initValues,
   extraReducers: (builder) => {
     builder
       .addCase(getContacts.fulfilled, (state, action) => {
@@ -60,7 +63,8 @@ const contactsSlice = createSlice({
           state.items[index] = action.payload;
         }
       })
-      .addCase(editContact.rejected, handleRejected);
+      .addCase(editContact.rejected, handleRejected)
+      .addCase(logOut.fulfilled, () => initValues);
   },
 });
 
