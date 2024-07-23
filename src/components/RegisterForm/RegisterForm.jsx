@@ -40,78 +40,30 @@ export default function RegisterForm() {
   const [color, setColor] = useState(initState);
   const [passValue, setValue] = useState("");
 
-  const hasLetters = /[a-zA-Z]/.test(passValue);
-  const hasDigits = /\d/.test(passValue);
-  const hasSymbols = /[!@#$%^&*(),.?":{}|<>]/.test(passValue);
+  const validatePassword = (password) => {
+    const hasLetters = /[a-zA-Z]/.test(password);
+    const hasDigits = /\d/.test(password);
+    const hasSymbols = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
-  const isRedClass = clsx(
-    passValue.length < 8 && passValue.length !== 0 && css.red
-  );
-
-  const firstClass = clsx(
-    css.message,
-    isRedClass ||
-      (color.hard && css.green) ||
-      (color.middle && css.yellow) ||
-      (color.easy && css.red)
-  );
-
-  const secondClass = clsx(
-    css.message,
-    isRedClass,
-    (color.hard && css.green) || (color.middle && css.yellow)
-  );
-
-  const thirdClass = clsx(css.message, isRedClass, color.hard && css.green);
-
-  const changeInput = (e) => {
-    const inputValue = e.target.value.trim();
-    const filteredValue = inputValue
-      .split("")
-      .filter((item) => item !== " ")
-      .join("");
-    setValue(filteredValue);
-  };
-
-  useEffect(() => {
     const typesCount = [hasDigits, hasLetters, hasSymbols].filter(
       Boolean
     ).length;
 
     switch (typesCount) {
       case 3:
-        setColor((prev) => {
-          return {
-            ...prev,
-            hard: true,
-          };
-        });
-
+        setColor({ hard: true, middle: false, easy: false });
         break;
       case 2:
-        setColor((prev) => {
-          return {
-            ...prev,
-            middle: true,
-            hard: false,
-          };
-        });
+        setColor({ hard: false, middle: true, easy: false });
         break;
       case 1:
-        setColor((prev) => {
-          return {
-            ...prev,
-            easy: true,
-            middle: false,
-            hard: false,
-          };
-        });
+        setColor({ hard: false, middle: false, easy: true });
         break;
       default:
         setColor(initState);
         break;
     }
-  }, [hasDigits, hasLetters, hasSymbols]);
+  };
 
   const notifyError = () =>
     toast.error("Something went wrong. Please try again!");
@@ -120,12 +72,17 @@ export default function RegisterForm() {
     dispatch(register(values))
       .unwrap()
       .then(() => {
+        setValue("");
         action.resetForm();
       })
       .catch(() => {
         notifyError();
       });
   };
+
+  useEffect(() => {
+    validatePassword(passValue);
+  }, [passValue]);
 
   return (
     <>
@@ -134,69 +91,102 @@ export default function RegisterForm() {
         initialValues={initValues}
         onSubmit={registerSubmit}
       >
-        <Form className={css.form}>
-          <div className={css.inputDiv}>
-            <label className={css.label} htmlFor={nameId}>
-              Name
-            </label>
-            <Field
-              id={nameId}
-              placeholder="Enter name"
-              className={css.input}
-              type="text"
-              name="name"
-            ></Field>
-            <ErrorMessage
-              className={css.errorMessage}
-              name="name"
-              component="span"
-            />
-          </div>
-          <div className={css.inputDiv}>
-            <label className={css.label} htmlFor={emailId}>
-              Email
-            </label>
-            <Field
-              id={emailId}
-              placeholder="Enter email"
-              className={css.input}
-              type="email"
-              name="email"
-            ></Field>
-            <ErrorMessage
-              className={css.errorMessage}
-              name="email"
-              component="span"
-            />
-          </div>
-          <div className={css.inputDiv}>
-            <label className={css.label} htmlFor={passwordId}>
-              Password
-            </label>
-            <Field
-              onChange={changeInput}
-              value={passValue}
-              id={passwordId}
-              className={css.input}
-              placeholder="Enter password"
-              type="password"
-              name="password"
-            />
-            <div className={css.output}>
-              <div className={firstClass}></div>
-              <div className={secondClass}></div>
-              <div className={thirdClass}></div>
-            </div>
-            <ErrorMessage
-              className={css.errorMessage}
-              name="password"
-              component="span"
-            />
-          </div>
-          <button className={css.submitBtn} type="submit">
-            Register
-          </button>
-        </Form>
+        {({ handleChange, values }) => {
+          const isRedClass = clsx(
+            values.password.length < 8 &&
+              values.password.length !== 0 &&
+              css.red
+          );
+
+          const firstClass = clsx(
+            css.message,
+            isRedClass ||
+              (color.hard && css.green) ||
+              (color.middle && css.yellow) ||
+              (color.easy && css.red)
+          );
+
+          const secondClass = clsx(
+            css.message,
+            isRedClass,
+            (color.hard && css.green) || (color.middle && css.yellow)
+          );
+
+          const thirdClass = clsx(
+            css.message,
+            isRedClass,
+            color.hard && css.green
+          );
+
+          return (
+            <Form className={css.form}>
+              <div className={css.inputDiv}>
+                <label className={css.label} htmlFor={nameId}>
+                  Name
+                </label>
+                <Field
+                  id={nameId}
+                  placeholder="Enter name"
+                  className={css.input}
+                  type="text"
+                  name="name"
+                ></Field>
+                <ErrorMessage
+                  className={css.errorMessage}
+                  name="name"
+                  component="span"
+                />
+              </div>
+              <div className={css.inputDiv}>
+                <label className={css.label} htmlFor={emailId}>
+                  Email
+                </label>
+                <Field
+                  id={emailId}
+                  placeholder="Enter email"
+                  className={css.input}
+                  type="email"
+                  name="email"
+                ></Field>
+                <ErrorMessage
+                  className={css.errorMessage}
+                  name="email"
+                  component="span"
+                />
+              </div>
+              <div className={css.inputDiv}>
+                <label className={css.label} htmlFor={passwordId}>
+                  Password
+                </label>
+                <Field
+                  id={passwordId}
+                  value={values.password}
+                  className={css.input}
+                  placeholder="Enter password"
+                  type="password"
+                  name="password"
+                  onChange={(e) => {
+                    handleChange(e);
+                    setValue(e.target.value);
+                  }}
+                />
+                <div className={css.output}>
+                  <div className={firstClass}></div>
+                  <div className={secondClass}></div>
+                  <div className={thirdClass}></div>
+                </div>
+                <ErrorMessage
+                  className={css.errorMessage}
+                  name="password"
+                  component="span"
+                />
+              </div>
+              <button className={css.submitBtn} type="submit">
+                Register
+              </button>
+            </Form>
+          );
+        }}
       </Formik>
       <Toaster />
     </>
