@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectLoggedIn, selectRefreshing } from "../redux/auth/selectors";
 import { refreshUser } from "../redux/auth/operations";
 import toast, { Toaster } from "react-hot-toast";
-import PrivateRoute from "./PrivateRoute";
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const RestrictedRoute = lazy(() => import("./RestrictedRoute"));
 const RegisterPage = lazy(() => import("../pages/RegisterPage/RegisterPage"));
+const PrivateRoute = lazy(() => import("./PrivateRoute"));
 const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage"));
 const ContactsPage = lazy(() => import("../pages/ContactsPage/ContactsPage"));
 // import css from "./App.module.css";
