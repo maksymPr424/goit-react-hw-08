@@ -83,10 +83,10 @@ export default function Contact({ name, number, id }) {
           <h2 className={css.text}>
             <BsPeopleFill className={css.icon} /> {name}
           </h2>
-          <p className={css.text}>
+          <a href={`tel:${number}`} className={css.text}>
             <PiPhoneCallFill className={css.icon} />
             {number}
-          </p>
+          </a>
         </div>
       )}
       <div>
