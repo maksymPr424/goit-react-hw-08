@@ -1,0 +1,17 @@
+.container {
+  background-image: url("../../img/home-background-x1.jpg");
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  padding-top: 100px;
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    background-size: 1280px;
+    padding-top: 140px;
+    background-position: center calc(100% + 100px);
+  }
+}

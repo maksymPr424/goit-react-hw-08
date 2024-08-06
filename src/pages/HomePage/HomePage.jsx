@@ -1,5 +1,10 @@
 import Title from "../../components/Title/Title";
+import css from './HomePage.module.css'
 
 export default function HomePage() {
-  return <Title />;
+  return (
+    <div className={css.container}>
+      <Title />
+    </div>
+  );
 }

@@ -22,7 +22,7 @@ export default function SearchBox() {
       <input
         onChange={search}
         value={filter}
-        className={css.input}
+        className={`${css.input} addHoverToInput`}
         type="text"
         id={searchId}
         name="searchBox"

@@ -14,15 +14,23 @@
 .input {
   width: 100%;
   padding: 8px;
-  font-size: 16px;
-  outline: 1px solid #ccc;
-  border: none;
-  outline: none;
-  border-radius: 5px;
+  font-size: 14px;
+  border-radius: 4px;
+  background-color: #fff;
+  border-width: 2px;
 }
 
-.input:hover,
-.input:focus,
-.input:active {
-  outline: 1px solid black;
+@media screen and (min-width: 768px) {
+  .input {
+    border-radius: 6px;
+    padding: 13px 20px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .input {
+    font-size: 17px;
+    padding: 13px 20px;
+  }
 }

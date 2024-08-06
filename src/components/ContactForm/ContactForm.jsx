@@ -44,7 +44,7 @@ export default function ContactForm() {
               Name
             </label>
             <Field
-              className={css.input}
+              className={`${css.input} addHoverToInput`}
               type="text"
               name="name"
               id={nameId}
@@ -60,7 +60,7 @@ export default function ContactForm() {
               Number
             </label>
             <Field
-              className={css.input}
+              className={`${css.input} addHoverToInput`}
               type="text"
               name="number"
               id={phoneId}
@@ -71,7 +71,7 @@ export default function ContactForm() {
               component="span"
             />
           </div>
-          <button className={css.submitBtn} type="submit">
+          <button className={`${css.submitBtn} addHoverToButton`} type="submit">
             Add contact
           </button>
         </Form>

@@ -4,6 +4,7 @@ import { nanoid } from "nanoid";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
 import toast, { Toaster } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const initValues = {
   email: "",
@@ -36,7 +37,8 @@ export default function LogInForm() {
   };
 
   return (
-    <>
+    <section className={css.section}>
+      <h2 className={css.title}>Login to Account</h2>
       <Formik initialValues={initValues} onSubmit={registerSubmit}>
         <Form className={css.form}>
           <div className={css.inputDiv}>
@@ -46,7 +48,7 @@ export default function LogInForm() {
             <Field
               id={emailId}
               placeholder="Enter email"
-              className={css.input}
+              className={`${css.input} addHoverToInput`}
               type="email"
               name="email"
             ></Field>
@@ -63,7 +65,7 @@ export default function LogInForm() {
             <Field
               id={passwordId}
               placeholder="Enter password"
-              className={css.input}
+              className={`${css.input} addHoverToInput`}
               type="password"
               name="password"
             ></Field>
@@ -73,12 +75,18 @@ export default function LogInForm() {
               component="span"
             />
           </div>
-          <button className={css.submitBtn} type="submit">
+          <button className={`${css.submitBtn} addHoverToButton`} type="submit">
             Login
           </button>
         </Form>
       </Formik>
+      <div className={css.subInfo}>
+        <p className={css.text}>Don’t have account?</p>
+        <Link className={`${css.link} addHoverToLink`} to="/register">
+          Create Account
+        </Link>
+      </div>
       <Toaster />
-    </>
+    </section>
   );
 }

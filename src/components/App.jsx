@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectLoggedIn, selectRefreshing } from "../redux/auth/selectors";
 import { refreshUser } from "../redux/auth/operations";
 import toast, { Toaster } from "react-hot-toast";
+import Footer from "./Footer/Footer";
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const RestrictedRoute = lazy(() => import("./RestrictedRoute"));
@@ -67,6 +68,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
+      <Footer />
       <Toaster />
     </>
   );

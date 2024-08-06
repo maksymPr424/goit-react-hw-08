@@ -7,6 +7,7 @@ import { register } from "../../redux/auth/operations";
 import toast, { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
+import { Link } from "react-router-dom";
 
 const initValues = {
   name: "",
@@ -85,7 +86,8 @@ export default function RegisterForm() {
   }, [passValue]);
 
   return (
-    <>
+    <section className={css.section}>
+      <h2 className={css.title}>Create Account</h2>
       <Formik
         validationSchema={registerSchema}
         initialValues={initValues}
@@ -127,7 +129,7 @@ export default function RegisterForm() {
                 <Field
                   id={nameId}
                   placeholder="Enter name"
-                  className={css.input}
+                  className={`${css.input} addHoverToInput`}
                   type="text"
                   name="name"
                 ></Field>
@@ -144,7 +146,7 @@ export default function RegisterForm() {
                 <Field
                   id={emailId}
                   placeholder="Enter email"
-                  className={css.input}
+                  className={`${css.input} addHoverToInput`}
                   type="email"
                   name="email"
                 ></Field>
@@ -161,7 +163,7 @@ export default function RegisterForm() {
                 <Field
                   id={passwordId}
                   value={values.password}
-                  className={css.input}
+                  className={`${css.input} addHoverToInput`}
                   placeholder="Enter password"
                   type="password"
                   name="password"
@@ -181,14 +183,23 @@ export default function RegisterForm() {
                   component="span"
                 />
               </div>
-              <button className={css.submitBtn} type="submit">
+              <button
+                className={`${css.submitBtn} addHoverToButton`}
+                type="submit"
+              >
                 Register
               </button>
             </Form>
           );
         }}
       </Formik>
+      <div className={css.subInfo}>
+        <p className={css.text}>Already have an account?</p>
+        <Link className={`${css.link} addHoverToLink`} to="/login">
+          Login to Account
+        </Link>
+      </div>
       <Toaster />
-    </>
+    </section>
   );
 }

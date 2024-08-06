@@ -14,39 +14,44 @@ export default function Navigation() {
   };
 
   return (
-    <nav className={css.nav}>
-      <div className={css.list}>
-        <NavLink className={css.link} to="/">
-          Home
-        </NavLink>
-        {isLoggedIn && (
-          <NavLink className={css.link} to="/contacts">
-            Contacts
-          </NavLink>
-        )}
-      </div>
-
-      {isLoggedIn ? (
+    <section className={css.container}>
+      <nav className={css.nav}>
         <div className={css.list}>
-          <h2 className={css.welcomeText}>Welcome, {userName}</h2>
-          <button className={css.logOut} onClick={handleLogOut}>
-            Log out
-          </button>
+          <NavLink className={`${css.link} addHoverToLink`} to="/">
+            Home
+          </NavLink>
+          {isLoggedIn && (
+            <NavLink className={`${css.link} addHoverToLink`} to="/contacts">
+              Contacts
+            </NavLink>
+          )}
         </div>
-      ) : (
-        <ul className={css.list}>
-          <li>
-            <NavLink className={css.link} to="/register">
-              Register
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className={css.link} to="/login">
-              Login
-            </NavLink>
-          </li>
-        </ul>
-      )}
-    </nav>
+
+        {isLoggedIn ? (
+          <div className={css.list}>
+            <h2 className={css.welcomeText}>Welcome, {userName}</h2>
+            <button
+              className={`${css.logOut} addHoverToButton`}
+              onClick={handleLogOut}
+            >
+              Log out
+            </button>
+          </div>
+        ) : (
+          <ul className={css.list}>
+            <li>
+              <NavLink className={`${css.link} addHoverToLink`} to="/register">
+                Register
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className={`${css.link} addHoverToLink`} to="/login">
+                Login
+              </NavLink>
+            </li>
+          </ul>
+        )}
+      </nav>
+    </section>
   );
 }

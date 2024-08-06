@@ -1,0 +1,35 @@
+.footer {
+  margin: 0 auto;
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-title);
+  backdrop-filter: blur(var(--background-blur));
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media screen and (min-width: 765px) {
+  .footer {
+    height: 40px;
+    gap: 100px;
+  }
+}
+
+.all {
+  font-size: 16px;
+}
+
+@media screen and (min-width: 765px) {
+  .all {
+    font-size: 18px;
+  }
+}
+
+.privacy {
+  font-size: 14px;
+}
