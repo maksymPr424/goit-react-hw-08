@@ -21,6 +21,7 @@
     margin: 0 auto;
     max-width: 650px;
     display: flex;
+    gap: 40px;
     justify-content: space-between;
   }
 }
@@ -37,24 +38,25 @@
 
 .forms {
   border-radius: 12px;
-  padding: 10px;
+  padding: 14px;
   text-align: center;
   margin: 0 auto;
   background-color: var(--background-title);
   backdrop-filter: blur(var(--background-blur));
   max-width: 375px;
+  width: 100%;
 }
 
 @media screen and (min-width: 768px) {
   .forms {
     padding: 14px;
-    max-width: 400px;
+    max-width: 250px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .forms {
-    max-width: 500px;
+    max-width: 350px;
     padding: 32px 54px 15px;
   }
 }

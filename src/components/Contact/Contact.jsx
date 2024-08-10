@@ -60,7 +60,7 @@ export default function Contact({ name, number, id }) {
           <h2 className={css.text}>
             <BsPeopleFill className={css.icon} />{" "}
             <input
-              className={css.input}
+              className={`${css.input} addHoverToInput`}
               name="name"
               type="text"
               value={contactChange.name}
@@ -70,7 +70,7 @@ export default function Contact({ name, number, id }) {
           <p className={css.text}>
             <PiPhoneCallFill className={css.icon} />
             <input
-              className={css.input}
+              className={`${css.input} addHoverToInput`}
               name="number"
               type="text"
               value={contactChange.number}
@@ -89,17 +89,17 @@ export default function Contact({ name, number, id }) {
           </a>
         </div>
       )}
-      <div>
+      <div className={css.editBox}>
         {!editing ? (
-          <button onClick={edit} className={css.btn}>
+          <button onClick={edit} className={clsx(css.btn, css.editBtn)}>
             <BiPencil className={css.icon} />
           </button>
         ) : (
-          <button onClick={submitEdit} className={css.btn}>
+          <button onClick={submitEdit} className={clsx(css.btn, css.editBtn)}>
             <BsSendArrowUp className={css.icon} />
           </button>
         )}
-        <button onClick={del} className={clsx(css.btn, css.delBtn)}>
+        <button onClick={del} className={css.btn}>
           <BiTrash className={css.icon} />
         </button>
       </div>

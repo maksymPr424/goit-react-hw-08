@@ -39,17 +39,12 @@
   font-size: 14px;
   text-align: end;
   max-width: 100px;
-  font-weight: 600;
-}
-
-@media screen and (min-width: 375px) {
-  .welcomeText {
-    max-width: 100%;
-  }
+  font-weight: 550;
 }
 
 @media screen and (min-width: 768px) {
   .welcomeText {
+    max-width: 100%;
     font-size: 17px;
   }
 }
@@ -62,8 +57,7 @@
 
 .link {
   font-size: 14px;
-  transition: color 0.2s;
-  /* color: #b1bcff; */
+  color: var(--link-color);
 }
 
 @media screen and (min-width: 768px) {

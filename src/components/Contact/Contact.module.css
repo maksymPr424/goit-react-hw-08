@@ -31,22 +31,20 @@
   transform: scale(1.05);
 }
 
-.delBtn {
-  margin-left: 10px;
-}
-
 .input {
   width: 100%;
   padding: 8px;
   font-size: 16px;
-  border: 1px solid #ccc;
   border-radius: 4px;
-  transition: border-color 0.3s;
-  outline: none;
 }
 
-.input:hover,
-.input:focus,
-.input:active {
-  border-color: #555;
+.editBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.editBtn {
+  margin-left: 6px;
 }
