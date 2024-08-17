@@ -8,6 +8,7 @@ import { addContact } from "../../redux/contacts/operations";
 const initValues = {
   name: "",
   number: "",
+  country: "",
 };
 
 const FeedbackSchema = Yup.object().shape({
@@ -19,15 +20,21 @@ const FeedbackSchema = Yup.object().shape({
     .min(3, "Too short!")
     .max(20, "Too long!")
     .required("Required"),
+  // country: Yup.string()
+  //   .min(3, "Too short!")
+  //   .max(20, "Too long!")
+  //   .required("Required"),
 });
 
 export default function ContactForm() {
   const nameId = useId();
   const phoneId = useId();
+  // const countryId = useId();
   const dispatch = useDispatch();
 
   const submitForm = (values, actions) => {
     dispatch(addContact(values));
+
     actions.resetForm();
   };
 
@@ -55,6 +62,22 @@ export default function ContactForm() {
               component="span"
             />
           </div>
+          {/* <div className={css.inputDiv}>
+            <label className={css.label} htmlFor={countryId}>
+              Country
+            </label>
+            <Field
+              className={`${css.input} addHoverToInput`}
+              type="text"
+              name="country"
+              id={countryId}
+            ></Field>
+            <ErrorMessage
+              className={css.errorMessage}
+              name="country"
+              component="span"
+            />
+          </div> */}
           <div className={css.inputDiv}>
             <label className={css.label} htmlFor={phoneId}>
               Number

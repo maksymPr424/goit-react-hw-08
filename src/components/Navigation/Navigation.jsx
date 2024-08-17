@@ -3,6 +3,7 @@ import css from "./Navigation.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectLoggedIn, selectUserName } from "../../redux/auth/selectors";
 import { logOut } from "../../redux/auth/operations";
+import logo from "../../img/Logo.png";
 
 export default function Navigation() {
   const isLoggedIn = useSelector(selectLoggedIn);
@@ -14,9 +15,12 @@ export default function Navigation() {
   };
 
   return (
-    <section className={css.container}>
+    <header className={css.container}>
       <nav className={css.nav}>
         <div className={css.list}>
+          <a href="/">
+            <img className={css.logo} src={logo} alt="logo" />
+          </a>
           <NavLink className={`${css.link} addHoverToLink`} to="/">
             Home
           </NavLink>
@@ -52,6 +56,6 @@ export default function Navigation() {
           </ul>
         )}
       </nav>
-    </section>
+    </header>
   );
 }

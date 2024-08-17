@@ -16,8 +16,14 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
+const creatorContact = {
+  name: "Maksym Prykhodko (Creator)",
+  number: "+48600124",
+  id: 76200,
+};
+
 const initValues = {
-  items: [],
+  items: [creatorContact],
   loading: false,
   error: null,
 };
@@ -30,7 +36,7 @@ const contactsSlice = createSlice({
       .addCase(getContacts.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = action.payload;
+        state.items = [creatorContact, ...action.payload];
       })
       .addCase(getContacts.rejected, handleRejected)
       .addCase(delateContact.pending, handlePending)
