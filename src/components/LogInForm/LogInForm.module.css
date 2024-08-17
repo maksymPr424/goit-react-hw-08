@@ -1,16 +1,14 @@
 .section {
   border-radius: 12px;
-  padding: 10px;
   text-align: center;
-  margin: 100px auto 0;
+  padding: 20px;
+  width: 100%;
   background-color: var(--background-title);
   backdrop-filter: blur(var(--background-blur));
-  max-width: 375px;
 }
 
 @media screen and (min-width: 768px) {
   .section {
-    padding: 14px;
     max-width: 400px;
   }
 }

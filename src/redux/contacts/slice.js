@@ -18,7 +18,7 @@ const handleRejected = (state, action) => {
 
 const creatorContact = {
   name: "Maksym Prykhodko (Creator)",
-  number: "+48600124",
+  number: "+48600124310",
   id: 76200,
 };
 

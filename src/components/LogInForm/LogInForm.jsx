@@ -37,7 +37,7 @@ export default function LogInForm() {
   };
 
   return (
-    <section className={css.section}>
+    <div className={css.section}>
       <h2 className={css.title}>Login to Account</h2>
       <Formik initialValues={initValues} onSubmit={registerSubmit}>
         <Form className={css.form}>
@@ -87,6 +87,6 @@ export default function LogInForm() {
         </Link>
       </div>
       <Toaster />
-    </section>
+    </div>
   );
 }

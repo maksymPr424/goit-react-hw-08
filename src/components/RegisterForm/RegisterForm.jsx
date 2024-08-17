@@ -86,7 +86,7 @@ export default function RegisterForm() {
   }, [passValue]);
 
   return (
-    <section className={css.section}>
+    <div className={css.section}>
       <h2 className={css.title}>Create Account</h2>
       <Formik
         validationSchema={registerSchema}
@@ -200,6 +200,6 @@ export default function RegisterForm() {
         </Link>
       </div>
       <Toaster />
-    </section>
+    </div>
   );
 }
