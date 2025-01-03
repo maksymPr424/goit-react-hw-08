@@ -11,7 +11,7 @@ export const getContacts = createAsyncThunk(
       return thunkAPI.rejectWithValue(e);
     }
   }
-);
+);  
 
 export const addContact = createAsyncThunk(
   "contacts/addContact",
